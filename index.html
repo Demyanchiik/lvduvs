@@ -3,14 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ЛьвДУВС Розклад пар</title>
+  <title>ЛьвДУВС Таймер пар</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- 🎨 Вибір кольору -->
-  <input type="color" id="colorPicker">
+  <!-- ⚙️ Налаштування -->
+  <div class="settings">
+    <button id="settingsBtn">⚙️</button>
+
+    <div class="settings-menu" id="settingsMenu">
+      <p>Оберіть колір:</p>
+
+      <button class="color-option red" data-color="#d32f2f">Пари</button>
+      <button class="color-option green" data-color="#2e7d32">Перерва</button>
+      <button class="color-option purple" data-color="#6a1b9a">Обід</button>
+      <button class="color-option blue" data-color="#1976d2">Немає пар</button>
+
+      <button class="reset">Авто режим</button>
+    </div>
+  </div>
 
   <div class="timer-container">
     <h1>ЛьвДУВС Таймер пар</h1>
