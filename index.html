@@ -9,19 +9,36 @@
 </head>
 <body>
 
+  <!-- ⏰ Поточний час -->
+  <div id="clock"></div>
+
   <!-- ⚙️ Налаштування -->
   <div class="settings">
     <button id="settingsBtn">⚙️</button>
 
     <div class="settings-menu" id="settingsMenu">
-      <p>Оберіть колір:</p>
 
-      <button class="color-option red" data-color="#d32f2f">Пари</button>
-      <button class="color-option green" data-color="#2e7d32">Перерва</button>
-      <button class="color-option purple" data-color="#6a1b9a">Обід</button>
-      <button class="color-option blue" data-color="#1976d2">Немає пар</button>
+      <!-- 🎨 Кольори -->
+      <div class="section">
+        <p>🎨 Колір:</p>
+        <button class="color-option red" data-color="#d32f2f">Пари</button>
+        <button class="color-option green" data-color="#2e7d32">Перерва</button>
+        <button class="color-option purple" data-color="#6a1b9a">Обід</button>
+        <button class="color-option blue" data-color="#1976d2">Немає пар</button>
+        <button class="reset">Авто режим</button>
+      </div>
 
-      <button class="reset">Авто режим</button>
+      <!-- ☑️ Пари -->
+      <div class="section">
+        <p>📚 Активні пари:</p>
+
+        <label><input type="checkbox" data-id="0" checked> 1 пара</label>
+        <label><input type="checkbox" data-id="2" checked> 2 пара</label>
+        <label><input type="checkbox" data-id="4" checked> 3 пара</label>
+        <label><input type="checkbox" data-id="6" checked> 4 пара</label>
+
+      </div>
+
     </div>
   </div>
 
