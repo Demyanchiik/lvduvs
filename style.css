@@ -10,7 +10,18 @@ body {
   transition: background 0.5s ease;
 }
 
-/* Таймер */
+/* ⏰ годинник */
+#clock {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* таймер */
 .timer-container {
   text-align: center;
   background: rgba(0,0,0,0.2);
@@ -21,22 +32,18 @@ body {
 
 h1 {
   font-size: 32px;
-  margin-bottom: 20px;
 }
 
 .current-session {
-  font-size: 28px;
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-size: 26px;
+  margin: 20px 0;
 }
 
 .timer {
   font-size: 60px;
-  margin: 20px 0;
-  font-weight: 700;
 }
 
-/* ⚙️ кнопка */
+/* ⚙️ */
 .settings {
   position: absolute;
   top: 20px;
@@ -57,30 +64,29 @@ h1 {
 .settings-menu {
   display: none;
   margin-top: 10px;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   padding: 15px;
   border-radius: 10px;
-  width: 180px;
+  width: 200px;
 }
 
 .settings-menu.active {
   display: block;
 }
 
-.settings-menu p {
-  margin: 0 0 10px;
+.section {
+  margin-bottom: 15px;
 }
 
-/* кнопки кольорів */
+/* кнопки кольору */
 .color-option {
   width: 100%;
-  margin-bottom: 8px;
-  padding: 8px;
+  margin-bottom: 6px;
+  padding: 6px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   color: white;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .red { background: #d32f2f; }
@@ -90,10 +96,17 @@ h1 {
 
 .reset {
   width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
+  margin-top: 5px;
+  padding: 6px;
   background: #555;
+  border: none;
+  border-radius: 6px;
   color: white;
+}
+
+/* чекбокси */
+label {
+  display: block;
+  margin-bottom: 5px;
   cursor: pointer;
 }
