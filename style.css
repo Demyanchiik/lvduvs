@@ -7,6 +7,7 @@ body {
   height: 100vh;
   background: #d32f2f;
   color: #fff;
+  transition: background 0.5s ease;
 }
 
 .timer-container {
@@ -32,4 +33,16 @@ h1 {
   font-size: 60px;
   margin: 20px 0;
   font-weight: 700;
+}
+
+/* 🎛️ кнопка кольору */
+#colorPicker {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: none;
 }
