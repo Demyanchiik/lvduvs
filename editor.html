@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редактор пар</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="editor">
+  <h2>📚 Розклад пар</h2>
+
+  <label>Оберіть день тижня:
+    <select id="daySelect">
+      <option value="1">Понеділок</option>
+      <option value="2">Вівторок</option>
+      <option value="3">Середа</option>
+      <option value="4">Четвер</option>
+      <option value="5">П’ятниця</option>
+    </select>
+  </label>
+
+  <div id="pairs"></div>
+
+  <button class="saveBtn" onclick="save()">💾 Зберегти</button>
+  <button class="backBtn" onclick="location.href='index.html'">⬅ Назад</button>
+</div>
+
+<script src="editor.js"></script>
+</body>
+</html>
