@@ -12,7 +12,7 @@ const schedule = [
 const timerDisplay = document.getElementById('timer');
 const currentSessionDisplay = document.getElementById('current-session');
 
-// Перетворюємо час "HH:MM" в Date сьогоднішнього дня
+// Перетворення часу "HH:MM" у Date сьогодні
 function parseTime(timeStr) {
   const [h, m] = timeStr.split(":").map(Number);
   const now = new Date();
@@ -20,34 +20,41 @@ function parseTime(timeStr) {
   return now;
 }
 
-// Оновлення таймера
-function updateTimer() {
+// Функція для пошуку поточної або наступної сесії
+function getNextSession() {
   const now = new Date();
-  let sessionFound = false;
-
   for (const s of schedule) {
     const start = parseTime(s.start);
     const end = parseTime(s.end);
 
     if (now >= start && now <= end) {
-      sessionFound = true;
-      const diff = Math.floor((end - now) / 1000);
-      const hrs = Math.floor(diff / 3600);
-      const mins = Math.floor((diff % 3600) / 60);
-      const secs = diff % 60;
+      return { session: s, diff: Math.floor((end - now)/1000) };
+    }
 
-      timerDisplay.textContent = `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-      currentSessionDisplay.textContent = s.name;
-      break;
+    if (now < start) {
+      return { session: s, diff: Math.floor((start - now)/1000) };
     }
   }
+  return null; // Якщо після всіх пар
+}
 
-  if (!sessionFound) {
+// Оновлення таймера
+function updateTimer() {
+  const next = getNextSession();
+
+  if (next) {
+    const hrs = Math.floor(next.diff / 3600);
+    const mins = Math.floor((next.diff % 3600) / 60);
+    const secs = next.diff % 60;
+
+    timerDisplay.textContent = `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+    currentSessionDisplay.textContent = next.session.name;
+  } else {
     timerDisplay.textContent = "00:00:00";
     currentSessionDisplay.textContent = "Немає пар зараз";
   }
 }
 
-// Оновлюємо таймер кожну секунду автоматично
+// Автооновлення щосекунди
 updateTimer();
 setInterval(updateTimer, 1000);
