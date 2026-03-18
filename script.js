@@ -141,3 +141,19 @@ setInterval(updateClock, 1000);
 
 updateTimer();
 updateClock();
+
+// годинник + дата
+function updateClock() {
+  const now = new Date();
+
+  // час
+  clock.textContent = now.toLocaleTimeString();
+
+  // дата + день
+  const days = ["Неділя","Понеділок","Вівторок","Середа","Четвер","П’ятниця","Субота"];
+  const dayName = days[now.getDay()];
+
+  const dateStr = now.toLocaleDateString("uk-UA");
+
+  document.getElementById("date").textContent = `${dayName}, ${dateStr}`;
+}
