@@ -1,4 +1,4 @@
-// Розклад пар і перерв
+// Розклад
 const schedule = [
   { name: "1 пара", start: "08:30", end: "09:50" },
   { name: "Перерва", start: "09:50", end: "10:05" },
@@ -11,9 +11,37 @@ const schedule = [
 
 const timerDisplay = document.getElementById('timer');
 const currentSessionDisplay = document.getElementById('current-session');
-const colorPicker = document.getElementById("colorPicker");
 
-// Перетворення часу "HH:MM" у Date
+// ⚙️ налаштування
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsMenu = document.getElementById("settingsMenu");
+const colorOptions = document.querySelectorAll(".color-option");
+const resetBtn = document.querySelector(".reset");
+
+let manualColor = localStorage.getItem("manualColor");
+
+// відкриття меню
+settingsBtn.addEventListener("click", () => {
+  settingsMenu.classList.toggle("active");
+});
+
+// вибір кольору
+colorOptions.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const color = btn.dataset.color;
+    manualColor = color;
+    localStorage.setItem("manualColor", color);
+    document.body.style.background = color;
+  });
+});
+
+// авто режим
+resetBtn.addEventListener("click", () => {
+  manualColor = null;
+  localStorage.removeItem("manualColor");
+});
+
+// час
 function parseTime(timeStr) {
   const [h, m] = timeStr.split(":").map(Number);
   const now = new Date();
@@ -21,22 +49,27 @@ function parseTime(timeStr) {
   return now;
 }
 
-// Визначення кольору
+// логіка кольору
 function setBackgroundBySession(name) {
-  let color = "#1976d2"; // синій (нема пар)
+  if (manualColor) {
+    document.body.style.background = manualColor;
+    return;
+  }
+
+  let color = "#1976d2";
 
   if (name.includes("перерва") && !name.includes("Обідня")) {
-    color = "#2e7d32"; // зелений
+    color = "#2e7d32";
   } else if (name.includes("Обідня")) {
-    color = "#6a1b9a"; // фіолетовий
+    color = "#6a1b9a";
   } else if (name.includes("пара")) {
-    color = "#d32f2f"; // червоний
+    color = "#d32f2f";
   }
 
   document.body.style.background = color;
 }
 
-// Пошук поточної або наступної сесії
+// пошук пари
 function getNextSession() {
   const now = new Date();
 
@@ -45,24 +78,18 @@ function getNextSession() {
     const end = parseTime(s.end);
 
     if (now >= start && now <= end) {
-      return {
-        session: s,
-        diff: Math.floor((end - now) / 1000)
-      };
+      return { session: s, diff: Math.floor((end - now)/1000) };
     }
 
     if (now < start) {
-      return {
-        session: s,
-        diff: Math.floor((start - now) / 1000)
-      };
+      return { session: s, diff: Math.floor((start - now)/1000) };
     }
   }
 
   return null;
 }
 
-// Оновлення таймера
+// оновлення
 function updateTimer() {
   const next = getNextSession();
 
@@ -78,27 +105,13 @@ function updateTimer() {
 
     currentSessionDisplay.textContent = next.session.name;
 
-    // 🎨 автоматичний колір
     setBackgroundBySession(next.session.name);
 
   } else {
     timerDisplay.textContent = "00:00:00";
     currentSessionDisplay.textContent = "Немає пар зараз";
-    document.body.style.background = "#1976d2"; // синій
+    document.body.style.background = manualColor || "#1976d2";
   }
-}
-
-// 🎨 кастомний колір
-colorPicker.addEventListener("input", (e) => {
-  const color = e.target.value;
-  document.body.style.background = color;
-  localStorage.setItem("customColor", color);
-});
-
-// при загрузці
-const savedColor = localStorage.getItem("customColor");
-if (savedColor) {
-  document.body.style.background = savedColor;
 }
 
 // запуск
