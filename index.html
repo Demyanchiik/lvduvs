@@ -3,54 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ЛьвДУВС Таймер пар</title>
+  <title>Таймер пар</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ⏰ Час + дата -->
-  <div id="clock-container">
-    <div id="clock"></div>
-    <div id="date"></div>
+<!-- ⏰ Час + дата -->
+<div id="top-bar">
+  <div id="clock"></div>
+  <div id="date"></div>
+</div>
+
+<!-- ⚙️ Кнопка налаштувань -->
+<div class="settings">
+  <button id="settingsBtn">⚙️</button>
+  <div class="settings-menu" id="settingsMenu">
+    <p>🎨 Колір фону:</p>
+    <button class="color-option" data-color="#d32f2f">Червоний</button>
+    <button class="color-option" data-color="#2e7d32">Зелений</button>
+    <button class="color-option" data-color="#6a1b9a">Фіолетовий</button>
+    <button class="color-option" data-color="#1976d2">Синій</button>
+    <button id="autoColor">Авто</button>
+    <hr>
+    <button onclick="location.href='editor.html'">📚 Редагувати пари</button>
   </div>
+</div>
 
-  <!-- ⚙️ -->
-  <div class="settings">
-    <button id="settingsBtn">⚙️</button>
+<!-- Таймер -->
+<div class="timer-container">
+  <h1 id="pairName">Завантаження...</h1>
+  <div id="timer">00:00:00</div>
+</div>
 
-    <div class="settings-menu" id="settingsMenu">
-
-      <!-- 🎨 Кольори -->
-      <div class="section">
-        <p>🎨 Колір:</p>
-        <button class="color-option red" data-color="#d32f2f">Червоний</button>
-        <button class="color-option green" data-color="#2e7d32">Зелений</button>
-        <button class="color-option purple" data-color="#6a1b9a">Фіолетовий</button>
-        <button class="color-option blue" data-color="#1976d2">Синій</button>
-        <button class="reset">Авто режим</button>
-      </div>
-
-      <!-- ☑️ Пари -->
-      <div class="section">
-        <p>📚 Активні пари:</p>
-
-        <label><input type="checkbox" data-id="0" checked> 1 пара</label>
-        <label><input type="checkbox" data-id="2" checked> 2 пара</label>
-        <label><input type="checkbox" data-id="4" checked> 3 пара</label>
-        <label><input type="checkbox" data-id="6" checked> 4 пара</label>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="timer-container">
-    <h1>ЛьвДУВС Таймер пар</h1>
-    <div class="current-session" id="current-session">Завантаження...</div>
-    <div class="timer" id="timer">00:00:00</div>
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
