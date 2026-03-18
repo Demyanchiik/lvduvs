@@ -10,6 +10,7 @@ body {
   transition: background 0.5s ease;
 }
 
+/* Таймер */
 .timer-container {
   text-align: center;
   background: rgba(0,0,0,0.2);
@@ -35,14 +36,64 @@ h1 {
   font-weight: 700;
 }
 
-/* 🎛️ кнопка кольору */
-#colorPicker {
+/* ⚙️ кнопка */
+.settings {
   position: absolute;
   top: 20px;
   right: 20px;
-  width: 50px;
-  height: 40px;
+}
+
+#settingsBtn {
+  font-size: 24px;
+  background: rgba(0,0,0,0.3);
   border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
   cursor: pointer;
-  background: none;
+}
+
+/* меню */
+.settings-menu {
+  display: none;
+  margin-top: 10px;
+  background: rgba(0,0,0,0.85);
+  padding: 15px;
+  border-radius: 10px;
+  width: 180px;
+}
+
+.settings-menu.active {
+  display: block;
+}
+
+.settings-menu p {
+  margin: 0 0 10px;
+}
+
+/* кнопки кольорів */
+.color-option {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.red { background: #d32f2f; }
+.green { background: #2e7d32; }
+.purple { background: #6a1b9a; }
+.blue { background: #1976d2; }
+
+.reset {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #555;
+  color: white;
+  cursor: pointer;
 }
