@@ -1,12 +1,3 @@
-let timer;
-let isRunning = false;
-
-const timerDisplay = document.getElementById('timer');
-const currentSessionDisplay = document.getElementById('current-session');
-const startBtn = document.getElementById('start');
-const pauseBtn = document.getElementById('pause');
-const resetBtn = document.getElementById('reset');
-
 // Розклад пар і перерв
 const schedule = [
   { name: "1 пара", start: "08:30", end: "09:50" },
@@ -18,7 +9,10 @@ const schedule = [
   { name: "4 пара", start: "14:00", end: "15:20" }
 ];
 
-// Перетворюємо час "HH:MM" в об'єкт Date сьогоднішнього дня
+const timerDisplay = document.getElementById('timer');
+const currentSessionDisplay = document.getElementById('current-session');
+
+// Перетворюємо час "HH:MM" в Date сьогоднішнього дня
 function parseTime(timeStr) {
   const [h, m] = timeStr.split(":").map(Number);
   const now = new Date();
@@ -54,25 +48,6 @@ function updateTimer() {
   }
 }
 
-// Старт
-startBtn.addEventListener('click', () => {
-  if (!isRunning) {
-    updateTimer();
-    timer = setInterval(updateTimer, 1000);
-    isRunning = true;
-  }
-});
-
-// Пауза
-pauseBtn.addEventListener('click', () => {
-  clearInterval(timer);
-  isRunning = false;
-});
-
-// Скидання
-resetBtn.addEventListener('click', () => {
-  clearInterval(timer);
-  isRunning = false;
-  timerDisplay.textContent = "00:00:00";
-  currentSessionDisplay.textContent = "Завантаження...";
-});
+// Оновлюємо таймер кожну секунду автоматично
+updateTimer();
+setInterval(updateTimer, 1000);
