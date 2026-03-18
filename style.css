@@ -1,225 +1,112 @@
 body {
-  margin: 0;
+  margin:0;
   font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   background: #d32f2f;
-  color: #fff;
-  transition: background 0.5s ease;
+  color:white;
+  transition: background 0.5s;
 }
 
-/* ⏰ годинник */
-#clock {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 18px;
+/* ⏰ Час та дата */
+#top-bar{
+  position:absolute;
+  top:15px;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  font-weight:bold;
+}
+
+#clock{
+  font-size:22px;
+  padding:6px 12px;
   background: rgba(0,0,0,0.3);
-  padding: 8px 12px;
-  border-radius: 8px;
+  border-radius:8px;
 }
 
-/* таймер */
-.timer-container {
-  text-align: center;
-  background: rgba(0,0,0,0.2);
-  padding: 50px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-h1 {
-  font-size: 32px;
-}
-
-.current-session {
-  font-size: 26px;
-  margin: 20px 0;
-}
-
-.timer {
-  font-size: 60px;
-}
-
-/* ⚙️ */
-.settings {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-#settingsBtn {
-  font-size: 24px;
+#date{
+  font-size:14px;
+  margin-top:4px;
+  padding:2px 8px;
+  border-radius:6px;
   background: rgba(0,0,0,0.3);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
+  opacity:0.9;
 }
 
-/* меню */
-.settings-menu {
-  display: none;
-  margin-top: 10px;
+/* Таймер */
+.timer-container{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+#pairName{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+#timer{
+  font-size:70px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ⚙️ Налаштування */
+.settings{
+  position:absolute;
+  top:20px;
+  left:20px;
+}
+
+.settings-menu{
+  display:none;
   background: rgba(0,0,0,0.9);
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
+  padding:10px;
+  border-radius:10px;
+  width:200px;
 }
 
-.settings-menu.active {
-  display: block;
+.settings-menu.active{
+  display:block;
 }
 
-.section {
-  margin-bottom: 15px;
+.settings-menu button{
+  display:block;
+  width:100%;
+  margin:4px 0;
+  padding:6px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  color:white;
+  font-weight:bold;
 }
 
-/* кнопки кольору */
-.color-option {
-  width: 100%;
-  margin-bottom: 6px;
-  padding: 6px;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
+/* Editor */
+.editor{
+  padding:20px;
+  max-width:500px;
+  margin:0 auto;
 }
 
-.red { background: #d32f2f; }
-.green { background: #2e7d32; }
-.purple { background: #6a1b9a; }
-.blue { background: #1976d2; }
-
-.reset {
-  width: 100%;
-  margin-top: 5px;
-  padding: 6px;
-  background: #555;
-  border: none;
-  border-radius: 6px;
-  color: white;
+.editor input{
+  display:block;
+  margin:4px 0 10px 0;
+  width:95%;
+  padding:6px;
+  border-radius:6px;
+  border:none;
 }
 
-/* чекбокси */
-label {
-  display: block;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #d32f2f;
-  color: #fff;
-  transition: background 0.5s ease;
+.saveBtn, .backBtn{
+  padding:8px 12px;
+  margin:6px 2px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-/* ⏰ контейнер */
-#clock-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-#clock {
-  font-size: 20px;
-  background: rgba(0,0,0,0.3);
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-#date {
-  margin-top: 5px;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* таймер */
-.timer-container {
-  text-align: center;
-  background: rgba(0,0,0,0.2);
-  padding: 50px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-h1 { font-size: 32px; }
-
-.current-session {
-  font-size: 26px;
-  margin: 20px 0;
-}
-
-.timer {
-  font-size: 60px;
-}
-
-/* ⚙️ */
-.settings {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-#settingsBtn {
-  font-size: 24px;
-  background: rgba(0,0,0,0.3);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.settings-menu {
-  display: none;
-  margin-top: 10px;
-  background: rgba(0,0,0,0.9);
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
-}
-
-.settings-menu.active {
-  display: block;
-}
-
-.section { margin-bottom: 15px; }
-
-.color-option {
-  width: 100%;
-  margin-bottom: 6px;
-  padding: 6px;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-.red { background: #d32f2f; }
-.green { background: #2e7d32; }
-.purple { background: #6a1b9a; }
-.blue { background: #1976d2; }
-
-.reset {
-  width: 100%;
-  margin-top: 5px;
-  padding: 6px;
-  background: #555;
-  border: none;
-  border-radius: 6px;
-  color: white;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+.saveBtn{background:#2e7d32;color:white;}
+.backBtn{background:#555;color:white;}
