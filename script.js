@@ -22,7 +22,7 @@ function updateClock() {
   });
 }
 
-// Отримання актуальної пари (або перерви)
+// 🔥 ГОЛОВНА ЛОГІКА (ПАРИ + ПЕРЕРВИ)
 function getPair() {
   const now = new Date();
   const day = now.getDay();
@@ -42,18 +42,41 @@ function getPair() {
     start.setHours(sh, sm, 0, 0);
     end.setHours(eh, em, 0, 0);
 
+    // ⏳ ДО ПАРИ
     if (now < start) {
-      return { name: today[i].name || `Пара ${i + 1}`, diff: (start - now) / 1000 };
+      return {
+        name: `До пари: ${today[i].name || `Пара ${i + 1}`}`,
+        diff: (start - now) / 1000,
+      };
     }
-    if (now <= end) {
-      return { name: today[i].name || `Пара ${i + 1}`, diff: (end - now) / 1000 };
+
+    // 📚 ПІД ЧАС ПАРИ
+    if (now >= start && now <= end) {
+      return {
+        name: today[i].name || `Пара ${i + 1}`,
+        diff: (end - now) / 1000,
+      };
+    }
+
+    // ☕ ПЕРЕРВА
+    if (i < schedule.length - 1) {
+      let nextStart = new Date();
+      const [nsh, nsm] = schedule[i + 1][0].split(":").map(Number);
+      nextStart.setHours(nsh, nsm, 0, 0);
+
+      if (now > end && now < nextStart) {
+        return {
+          name: "Перерва",
+          diff: (nextStart - now) / 1000,
+        };
+      }
     }
   }
 
   return null;
 }
 
-// Задаємо колір фону
+// 🎨 КОЛІР ФОНУ
 function setColor(pair) {
   if (customColor) {
     document.body.style.background = customColor;
@@ -61,17 +84,17 @@ function setColor(pair) {
   }
 
   if (!pair) {
-    document.body.style.background = "#1976d2"; // Синій — немає пар
-  } else if (pair.toLowerCase().includes("перерва") && !pair.toLowerCase().includes("обід")) {
-    document.body.style.background = "#2e7d32"; // Зелений — перерва
-  } else if (pair.toLowerCase().includes("обід")) {
-    document.body.style.background = "#6a1b9a"; // Фіолет — обідня перерва
+    document.body.style.background = "#1976d2"; // нема пар
+  } else if (pair.toLowerCase().includes("перерва")) {
+    document.body.style.background = "#2e7d32"; // перерва
+  } else if (pair.toLowerCase().includes("до пари")) {
+    document.body.style.background = "#1976d2"; // очікування
   } else {
-    document.body.style.background = "#d32f2f"; // Червоний — пара
+    document.body.style.background = "#d32f2f"; // пара
   }
 }
 
-// Оновлення таймера
+// ⏱ ОНОВЛЕННЯ ТАЙМЕРА
 function update() {
   const p = getPair();
 
@@ -91,16 +114,14 @@ function update() {
 
   timer.textContent = `${h}:${m}:${s}`;
   setColor(p.name);
-
-  p.diff -= 0.2;
 }
 
-// Кнопка налаштувань
+// ⚙️ КНОПКА НАЛАШТУВАНЬ
 document.getElementById("settingsBtn").onclick = () => {
   document.getElementById("settingsMenu").classList.toggle("active");
 };
 
-// Кольори кнопок
+// 🎨 ВИБІР КОЛЬОРУ
 document.querySelectorAll(".color-option").forEach((b) => {
   b.onclick = () => {
     localStorage.setItem("color", b.dataset.color);
@@ -108,14 +129,15 @@ document.querySelectorAll(".color-option").forEach((b) => {
   };
 });
 
-// Авто колір
+// 🔄 АВТО КОЛІР
 document.getElementById("autoColor").onclick = () => {
   localStorage.removeItem("color");
   location.reload();
 };
 
-// Інтервали оновлення
+// ⏲ ІНТЕРВАЛИ
 setInterval(update, 200);
 setInterval(updateClock, 1000);
+
 update();
 updateClock();
